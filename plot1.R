@@ -1,0 +1,7 @@
+household_power_consumption <- read.csv("~/Downloads/household_power_consumption.txt", sep=";", na.strings="?", stringsAsFactors=FALSE, nrows=10)
+household_power_consumption <- read.csv("~/Downloads/household_power_consumption.txt", sep=";", na.strings="?", stringsAsFactors=FALSE, colClasses = sapply(household_power_consumption, class))
+household_power_consumption$Date <- as.Date(household_power_consumption$Date, format="%d/%m/%Y")
+household_power_consumption <- subset(household_power_consumption, Date == "2007-02-01" | Date == "2007-02-02")
+png(file="plot1.png", width=480, height=480)
+hist(household_power_consumption$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)")
+dev.off()
